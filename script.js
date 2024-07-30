@@ -95,21 +95,36 @@ movements.forEach(function (mov, i){
 }
 displayMovements(account1.movements);
 
+const user = 'Steven Thomas Williams';//stw
+
+const createUsername = function (accs) {
+accs.forEach(acc => // creating a side effect
+  acc.username =  acc.owner.toLowerCase().split(' ').map(name=> 
+    name.at(0)
+   ).join('')
+)}
+ createUsername(accounts)
+ console.log(accounts)
+
+
+
 // LECTURES
 const movements = [200,450,-400,3000,-650,-130,70,1300];
 
-const eurToUsd = 1.1;
+
+
+// const eurToUsd = 1.1;
 
 // const movToUsd = movements.map(function(mov){
 //   return mov * eurToUsd
 // })
 // console.log(movToUsd);
 
-const moveToUsd = movements.map((mov, i)=>
+// const moveToUsd = movements.map((mov, i)=>
 
-  `Movement ${i + 1}: You ${mov > 0 ?  'deposited' : 'withdrew'}${Math.abs(mov)} `
-)
-console.log(moveToUsd);
+//   `Movement ${i + 1}: You ${mov > 0 ?  'deposited' : 'withdrew'}${Math.abs(mov)} `
+// )
+// console.log(moveToUsd);
 
 
 
