@@ -103,8 +103,25 @@ const createDisplayBal = function(movements){
   labelBalance.textContent= `${balance}€`;
 
 };
-createDisplayBal(account1.movements)
+createDisplayBal(account1.movements);
 
+// chaining methods on the in, out and summary
+const calcDisplaySummary = function(movements) {
+  const incomes = movements.filter((mov)=> mov > 0).reduce((acc,mov)=> acc + mov,0);
+  const expenses = movements.filter((mov) => mov < 0).reduce((acc,mov) => acc + mov, 0);
+  const interest = movements
+  .filter((deposit) => deposit >  0)
+  .map((deposit) => deposit * 1.2/100)
+  .filter((int,i,arr) =>{ 
+    return int >= 1})
+  .reduce((acc,int) => acc + int,0)
+
+
+  labelSumIn.textContent = `${Math.ceil(incomes)}€`;
+  labelSumOut.textContent = `${Math.abs(Math.ceil(expenses))}€`;
+  labelSumInterest.textContent = `${Math.ceil(interest)}€`
+}
+calcDisplaySummary(account1.movements)
 
 const createUsername = function(accs) {
   accs.forEach((acc)=> {
@@ -114,37 +131,48 @@ const createUsername = function(accs) {
 createUsername(accounts);
 
 // QUIZ lesson6
-const dogJulia = [5,2, 4,1,15,8,3];
-const dogKate = [16, 6, 10,5,6,1,4];
+// const dogJulia = [5,2, 4,1,15,8,3];
+// const dogKate = [16, 6, 10,5,6,1,4];
 
-const calcAverageHumanAge = function(ages) {
-  const humanAge = ages.map((dogAge, i)=> {
+// const calcAverageHumanAge = function(ages) {
+//   const humanAge = ages.map((dogAge, i)=> {
     
-    if (dogAge <= 2) {
-      return dogAge * 2
-    }
-    else {
-      return 16 + dogAge * 4
-    }
-  });
-  console.log(humanAge)
+//     if (dogAge <= 2) {
+//       return dogAge * 2
+//     }
+//     else {
+//       return 16 + dogAge * 4
+//     }
+//   });
+//   console.log(humanAge)
 
-  const adult = humanAge.filter((dogAge, i) => 
-  dogAge >= 18  )
-  console.log(adult)
+//   const adult = humanAge.filter((dogAge, i) => 
+//   dogAge >= 18  )
+//   console.log(adult)
 
-  const average = adult.reduce((acc,cur,i,arr) => 
-  acc + cur/arr.length, 0);
+//   const average = adult.reduce((acc,cur,i,arr) => 
+//   acc + cur/arr.length, 0);
   
-return(average)
-}
-console.log(calcAverageHumanAge(dogJulia))
-console.log(calcAverageHumanAge(dogKate))
+// return(average)
+// }
+// console.log(calcAverageHumanAge(dogJulia))
+// console.log(calcAverageHumanAge(dogKate))
 
  
 
 // LECTURES
 const movements = [200,450,-400,3000,-650,-130,70,1300];
+const eurToUsd = 1.1;
+
+const totalDepositUSD = movements.filter((mov, i, arr) => 
+  mov > 0
+).map((mov, i, arr) => 
+ mov * eurToUsd
+).reduce((acc, mov, i, arr)=> 
+  acc + mov,  0
+)
+
+console.log(totalDepositUSD)
 
 // // reduce method
 // const balance = movements.reduce((acc, cur, i, arr) => 
