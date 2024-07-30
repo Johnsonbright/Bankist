@@ -86,7 +86,7 @@ movements.forEach(function (mov, i){
   const type = (mov > 0) ? 'deposit' : 'withdrawal';
  const html = 
         ` <div class="movements__row">
-          <div class="movements__type movements__type--${type}">${i + 1}${type}</div>
+          <div class="movements__type movements__type--${type}">${i + 1}  ${type}</div>
           <div class="movements__value">${mov}€</div>
         </div>`
 
@@ -95,24 +95,30 @@ movements.forEach(function (mov, i){
 }
 displayMovements(account1.movements);
 
-const user = 'Steven Thomas Williams';//stw
 
-const createUsername = function (accs) {
-accs.forEach(acc => // creating a side effect
-  acc.username =  acc.owner.toLowerCase().split(' ').map(name=> 
-    name.at(0)
-   ).join('')
-)}
- createUsername(accounts)
- console.log(accounts)
 
 
 
 // LECTURES
 const movements = [200,450,-400,3000,-650,-130,70,1300];
 
+// Filter methods
+const deposits = movements.filter(mov=> 
+  mov > 0
+)
+
+console.log(movements);
+console.log(deposits);
+
+const depositFor =[]
+for(const mov of movements) if(mov > 0) {
+  depositFor.push(mov)
+}
+console.log(depositFor)
 
 
+const withdrawals = movements.filter(mov => mov < 0)
+console.log(withdrawals)
 // const eurToUsd = 1.1;
 
 // const movToUsd = movements.map(function(mov){
