@@ -111,30 +111,59 @@ const createUsername = function(accs) {
     acc.username = acc.owner.toLowerCase().split(' ').map(name => name.at(0)).join('');
   });
 };
-createUsername(accounts)
+createUsername(accounts);
 
+// QUIZ lesson6
+const dogJulia = [5,2, 4,1,15,8,3];
+const dogKate = [16, 6, 10,5,6,1,4];
+
+const calcAverageHumanAge = function(ages) {
+  const humanAge = ages.map((dogAge, i)=> {
+    
+    if (dogAge <= 2) {
+      return dogAge * 2
+    }
+    else {
+      return 16 + dogAge * 4
+    }
+  });
+  console.log(humanAge)
+
+  const adult = humanAge.filter((dogAge, i) => 
+  dogAge >= 18  )
+  console.log(adult)
+
+  const average = adult.reduce((acc,cur,i,arr) => 
+  acc + cur/arr.length, 0);
+  
+return(average)
+}
+console.log(calcAverageHumanAge(dogJulia))
+console.log(calcAverageHumanAge(dogKate))
+
+ 
 
 // LECTURES
 const movements = [200,450,-400,3000,-650,-130,70,1300];
 
-// reduce method
-const balance = movements.reduce((acc, cur, i, arr) => 
-  acc + cur, 0)
+// // reduce method
+// const balance = movements.reduce((acc, cur, i, arr) => 
+//   acc + cur, 0)
 
-console.log(balance);
-// using reduce method to get the maximum value
-const max = movements.reduce((acc, cur)=> 
-acc > cur ? acc : cur, movements[0] );
+// console.log(balance);
+// // using reduce method to get the maximum value
+// const max = movements.reduce((acc, cur)=> 
+// acc > cur ? acc : cur, movements[0] );
 
-console.log(max);
+// console.log(max);
 
-// using reduce method to get the minimum value
-const min = movements.reduce((acc, cur)=> 
-  acc < cur ? acc : cur, movements[0] );
+// // using reduce method to get the minimum value
+// const min = movements.reduce((acc, cur)=> 
+//   acc < cur ? acc : cur, movements[0] );
   
-  console.log(min)
+//   console.log(min)
 
-  console.log(movements)
+//   console.log(movements)
 
 
 
